@@ -89,7 +89,7 @@ client.on('message', async (message) => {
 
                         const background = await Canvas.loadImage('./red.jpg');
                         ctx.drawImage(background, 0, 0, canvas.width, canvas.height);
-                        ctx.font = "30px Arial";
+                        ctx.font = "20px Arial";
 
                         if(CMD_NAME === 'vertpoll'){
                             let y_scale = canvas.height/num_options;
@@ -97,7 +97,7 @@ client.on('message', async (message) => {
                             for(let i = 0; i < num_reacts.length; ++i) {    //draws in accordance to poll results and labels the choices
                                 ctx.fillRect(0, i * y_scale, num_reacts[i] * increment, y_scale);
                                 ctx.fillStyle = "white";
-                                ctx.fillText(i + 1, 0, (i * y_scale) + (y_scale/2));
+                                ctx.fillText(i + 1 + ":" + num_reacts[i], 0, (i * y_scale) + (y_scale/num_options));
                                 ctx.fillStyle = "black";
                             }
                         } else {
@@ -106,7 +106,7 @@ client.on('message', async (message) => {
                             for(let i = 0; i < num_reacts.length; ++i) {    //draws in accordance to poll results and labels the choices
                                 ctx.fillRect(i * x_scale, canvas.height, x_scale, -num_reacts[i] * increment);
                                 ctx.fillStyle = "white";
-                                ctx.fillText(i + 1, (i * x_scale) + (x_scale/2), canvas.height);
+                                ctx.fillText(i + 1 + ":" + num_reacts[i], (i * x_scale) + (x_scale/num_options), canvas.height);
                                 ctx.fillStyle = "black";
                             }
                         }
